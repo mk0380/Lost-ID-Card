@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./logo.png">
+    <script type="module" src="./index.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+    <script src="./FileSaver.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>DOSA | IIT Kanpur</title>
+</head>
+
+<body>
+    <!-- <iframe src="./id-card.pdf" frameborder="0" id="mypdf" height="700px" width="600px"></iframe> -->
+    <div class="container">
+        <div class="text">
+            Form For Reissue Of I-Card
+        </div>
+        <form id="google-sheet">
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" id="studentInput" name="Name" required>
+                    <div class="underline"></div>
+                    <label id="studentName">Name</label>
+                </div>
+                <div class="input-data">
+                    <input type="number" id="rollInput" name="Roll No" required>
+                    <div class="underline"></div>
+                    <label id="rollName">Roll No</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="date" id="DOB" name="DOB (YYYY-MM-DD)" required>
+                    <div class="underline"></div>
+                    <label id="DOB">Date Of Birth (DD-MM-YYYY)</label>
+                </div>
+                <div class="input-data">
+                    <select id="branchInput" name="Department">
+                        <option value="">Department</option>
+                        <option value="Aerospace Engineering">Aerospace Engineering</option>
+                        <option value="Biological Sciences and Bio-Engineering">Biological Sciences and Bio-Engineering
+                        </option>
+                        <option value="Chemical Engineering">Chemical Engineering</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Cognitive Science">Cognitive Science</option>
+                        <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                        <option value="Design">Design</option>
+                        <option value="Earth Sciences">Earth Sciences</option>
+                        <option value="Economics">Economics</option>
+                        <option value="Economic Sciences">Economic Sciences</option>
+                        <option value="Electrical Engineering">Electrical Engineering</option>
+                        <option value="Humanities and Social Sciences">Humanities and Social Sciences</option>
+                        <option value="Management Sciences">Management Sciences</option>
+                        <option value="Materials Science and Engineering">Materials Science and Engineering</option>
+                        <option value="Materials Science Program">Materials Science Program</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Mathematics and Scientific Computing">Mathematics and Scientific Computing
+                        </option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Nuclear Engineering and Technology">Nuclear Engineering and Technology</option>
+                        <option value="Photonics Science and Engineering">Photonics Science and Engineering</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Statistics">Statistics</option>
+                        <option value="Statistics and Data Science">Statistics and Data Science</option>
+                        <option value="Sustainable Energy Engineering">Sustainable Energy Engineering</option>
+                        <option value=" ">None of the above</option>
+                    </select>
+                    <div class="underline"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" id="locAddInput" name="Local Address" required>
+                    <div class="underline"></div>
+                    <label id="locAddName">Local Address</label>
+                </div>
+                <div class="input-data">
+                    <input type="text" id="perAddInput" name="Permanent Address" required>
+                    <div class="underline"></div>
+                    <label id="perAddName">Permanent Address</label>
+                </div>
+            </div>
+
+            <div style="text-align: center;font-size: 18px;font-weight: 500;">
+                <label>Reason for requesting issue of the duplicate I-Card</label>
+            </div>
+
+            <div class="form-row" style="display: flex;flex-wrap: wrap;gap: 30px;">
+                <div style="display: flex;justify-content:start;align-items: center;">
+                    <div><input type="checkbox" id="con1" name="Reason For Requesting"
+                            value="Update in Sign/ Photo/ details" style="margin-right: 5px;"></div>
+                    <div><label for="con1" style="cursor: pointer;">Update in Sign/ Photo/ details</label></div>
+                </div>
+                <div style="display: flex;justify-content: start;align-items: center;">
+                    <div><input type="checkbox" id="con2" name="Reason For Requesting" value="Lost: 1st time/2nd time"
+                            style="margin-right: 5px;"></div>
+                    <div><label for="con2" style="cursor: pointer;">Lost: 1st time/2nd time</label></div>
+                </div>
+                <div style="display: flex;justify-content: start;align-items: center;">
+                    <div><input type="checkbox" id="con3" name="Reason For Requesting" value="Renewal"
+                            style="margin-right: 5px;">
+                    </div>
+                    <div><label for="con3" style="cursor: pointer;">Renewal</label></div>
+                </div>
+                <div style="display: flex;justify-content: start;align-items: center;">
+                    <div><input type="checkbox" id="con4" name="Reason For Requesting" value="Damaged"
+                            style="margin-right: 5px;">
+                    </div>
+                    <div><label for="con4" style="cursor: pointer;">Damaged</label></div>
+                </div>
+            </div>
+
+            <div style="text-align: center;font-size: 18px;font-weight: 500;">
+                <label>If the previous identity card is lost, please fill the following details:</label>
+            </div>
+
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" id="lost_place" name="Place Of Lost">
+                    <div class="underline"></div>
+                    <label id="lost_place">Place Of Lost</label>
+                </div>
+                <div class="input-data">
+                    <input type="date" id="lost_date" name="Date Of Lost (YYYY-MM-DD)" required value=" ">
+                    <div class="underline"></div>
+                    <label id="lost_date">Date Of Lost (DD-MM-YYYY)</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data textarea">
+                    <div class="form-row submit-btn">
+                        <div class="input-data" id="btn">
+                            <div class="inner"></div>
+                            <input type="button" value="Submit" name="submit" id="btn">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+
+        const name = document.querySelector("#studentInput")
+        const roll = document.querySelector("#rollInput")
+        const DOB = document.querySelector("#DOB")
+        const department = document.querySelector("#branchInput")
+        const local = document.querySelector("#locAddInput")
+        const permanent = document.querySelector("#perAddInput")
+
+        const con1 = document.querySelector("#con1")
+        const con2 = document.querySelector("#con2")
+        const con3 = document.querySelector("#con3")
+        const con4 = document.querySelector("#con4")
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxWvcd0jzMEsx49uSuxNmKSZfNQPh5ZVEwkmNWuNErQrnPS_xLgKAOf_VuUuTdozbhKpA/exec'
+        const btn = document.getElementById('btn')
+        const form = document.getElementById('google-sheet')
+        btn.addEventListener('click', e => {
+            e.preventDefault()
+            if (name.value.length == 0 || roll.value.length == 0 || DOB.value.length == 0 || department.value.length == 0 || local.value.length == 0 || permanent.value.length == 0 || (!con1.checked && !con2.checked && !con3.checked && !con4.checked)) {
+                return
+            }
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("I-Card Reissue Form submitted successfully"))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+
+</html>
