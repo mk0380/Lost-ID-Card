@@ -166,6 +166,11 @@ input[type=date]:invalid::-webkit-datetime-edit {
 input[type=date]:focus::-webkit-datetime-edit {
   color: black !important;
 }
+.required {
+  color: red;
+  margin-left: 5px; /* Adjust as needed */
+}
+
 @media (max-width: 700px) {
   .container .text{
     font-size: 30px;
